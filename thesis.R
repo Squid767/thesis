@@ -181,18 +181,16 @@ allmydata <- sorteddata
 
 # --- Describing & Visualizing the Data ---
 
-#summary(mylinreg)
-#data(mysupporttable)
-#attach(mydata)
-#plot(wards_placed, assists)
-#abline(mylinreg)
-#detach(mydata)
+allmylinreg <- lm(kills ~ workdays_in_game_8hrs, data=allmydata)
+summary(allmylinreg)
 
-#mylinreg <- lm(kills ~ days_in_game, data=sorteddata)
-#summary(mylinreg)
+attach(allmydata)
+plot(workdays_in_game_8hrs, kills)
+#abline(allmylinreg)
+detach(allmydata)
+
 
 # --- Probit Regression Start ---
 #myprobit <- glm(winner ~ kills + deaths + assists, family=binomial(link="probit"), data=mydata)
 #summary(myprobit)
 #confint(myprobit)
-
