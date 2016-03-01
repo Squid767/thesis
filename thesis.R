@@ -181,18 +181,18 @@ allmydata <- sorteddata
 
 # --- Describing & Visualizing the Data ---
 
-#summary(mylinreg)
-#data(mysupporttable)
-#attach(mydata)
-#plot(wards_placed, assists)
-#abline(mylinreg)
-#detach(mydata)
+allmylinreg <- lm(kills ~ workdays_in_game_8hrs + kills + deaths + assists + wards_placed + wards_killed, data=allmydata)
+summary(allmylinreg)
 
-#mylinreg <- lm(kills ~ days_in_game, data=sorteddata)
-#summary(mylinreg)
+#attach(allmydata)
+#plot(workdays_in_game_8hrs, kills)
+#abline(allmylinreg)
+#detach(allmydata)
+
+#chiframe <- table(allmydata$kills,allmydata$assists)
+#chisq.test(chiframe)
 
 # --- Probit Regression Start ---
-#myprobit <- glm(winner ~ kills + deaths + assists, family=binomial(link="probit"), data=mydata)
-#summary(myprobit)
+myprobit <- glm(winner ~ kills + deaths + assists + wards_placed + wards_killed, family=binomial(link="probit"), data=allmydata)
+summary(myprobit)
 #confint(myprobit)
-
