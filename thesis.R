@@ -87,6 +87,8 @@ sorteddata$first_game_timestamp_by_id <- ave(sorteddata$first_game_timestamp,sor
 sorteddata$milliseconds_since_first_game <- sorteddata$match_timestamp-sorteddata$first_game_timestamp_by_id
 sorteddata$days_since_first_game <- sorteddata$milliseconds_since_first_game/86400000
 sorteddata$workdays_since_first_game_8hrs <- sorteddata$days_since_first_game*3
+sorteddata$pct_days_in_game <- ifelse(sorteddata$days_since_first_game==0,1,
+	ifelse(sorteddata$days_since_first_game<=sorteddata$days_in_game,1,sorteddata$days_in_game/sorteddata$days_since_first_game))
 
 
 # --- Generating the Familiarity Dummy Variables & Columns ---
@@ -161,6 +163,14 @@ sorteddata$f8 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.8
 	ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id<=0.899,1,0),0)
 sorteddata$f9 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.900,1,0)
 
+# --- Creating the Position Dummy Variable ---
+
+sorteddata$top <- ifelse(sorteddata$lane=="TOP",1,0)
+sorteddata$jungle <- ifelse(sorteddata$lane=="JUNGLE",1,0)
+sorteddata$mid <- ifelse(sorteddata$lane=="MIDDLE",1,0)
+sorteddata$bot_carry <- ifelse(sorteddata$role=="DUO_CARRY",1,0)
+sorteddata$bot_support <- ifelse(sorteddata$role=="DUO_SUPPORT",1,0)
+
 
 # --- Transforming the Data ---
 # Creating a dataframe of RANKED_SOLO_5x5 data and a dataframe of TEAM_RANKED_5x5 data
@@ -181,18 +191,19 @@ allmydata <- sorteddata
 
 # --- Describing & Visualizing the Data ---
 
+#mylinreg <- lm(winner ~ kills, data=allmydata)
+
 #summary(mylinreg)
-#data(mysupporttable)
-#attach(mydata)
+
+#data(allmydata)
+#attach(allmydata)
 #plot(wards_placed, assists)
 #abline(mylinreg)
-#detach(mydata)
-
-#mylinreg <- lm(kills ~ days_in_game, data=sorteddata)
-#summary(mylinreg)
+#detach(allmydata)
 
 # --- Probit Regression Start ---
-#myprobit <- glm(winner ~ kills + deaths + assists, family=binomial(link="probit"), data=mydata)
+
+#myprobit <- glm(winner ~ kills + deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + sum_games_by_id + days_in_game + days_since_first_game + pct_days_in_game + f0 + f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + top + jungle + mid + bot_carry + bot_support, family=binomial(link="probit"), data=allmydata)
 #summary(myprobit)
 #confint(myprobit)
 
