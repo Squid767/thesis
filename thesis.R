@@ -163,6 +163,17 @@ sorteddata$f8 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.8
 	ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id<=0.899,1,0),0)
 sorteddata$f9 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.900,1,0)
 
+	# -Broke familiarity into Thirds-
+sorteddata$f00 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id<0.3333,1,0)
+sorteddata$f01 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.3333,
+	ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id<0.6666,1,0),0)
+sorteddata$f02 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.6666,1,0)
+
+	# -Broke familiarity into Not, and Somewhat +
+sorteddata$f000 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id<0.2,1,0)
+sorteddata$f001 <- ifelse(sorteddata$alltmfamcount/sorteddata$sum_games_by_id>=0.2,1,0)
+
+
 # --- Creating the Position Dummy Variable ---
 
 sorteddata$top <- ifelse(sorteddata$lane=="TOP",1,0)
@@ -174,10 +185,22 @@ sorteddata$bot_support <- ifelse(sorteddata$role=="DUO_SUPPORT",1,0)
 
 # --- Transforming the Data ---
 # Creating a dataframe of RANKED_SOLO_5x5 data and a dataframe of TEAM_RANKED_5x5 data
-# from the comprehensive dataframe of All Matches
+# from the comprehensive dataframe of All Matches. Also player specific dataframes for each of the roster members. 
+# This is not a scalable approach to handling panel data, but will work in this case due to the small number of players (8).
+# Finally there is a complete and unedited dataset "allmydata"
 
 mysolodata <- subset(sorteddata, queue == "RANKED_SOLO_5x5")
 myteamdata <- subset(sorteddata, queue == "RANKED_TEAM_5x5")
+rm0 <- subset(sorteddata, summoner_id == 40532886)
+rm1 <- subset(sorteddata, summoner_id == 31307983)
+rm2 <- subset(sorteddata, summoner_id == 48565039)
+rm3 <- subset(sorteddata, summoner_id == 25279066)
+rm4 <- subset(sorteddata, summoner_id == 31995521)
+rm5 <- subset(sorteddata, summoner_id == 26243614)
+rm6 <- subset(sorteddata, summoner_id == 50879700)
+rm7 <- subset(sorteddata, summoner_id == 30601794)
+rm8 <- subset(sorteddata, summoner_id == 21269208)
+
 allmydata <- sorteddata
 
 
@@ -190,8 +213,12 @@ allmydata <- sorteddata
 
 
 # --- Describing & Visualizing the Data ---
+#      -Creating and Developing Models-
 
-#mylinreg <- lm(winner ~ kills, data=allmydata)
+
+# - Linear Regression Models -
+
+#mylinreg <- lm(kills ~ deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + winner + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f0 + f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + top + jungle + mid + bot_carry + bot_support, data=allmydata)
 
 #summary(mylinreg)
 
@@ -201,9 +228,9 @@ allmydata <- sorteddata
 #abline(mylinreg)
 #detach(allmydata)
 
-# --- Probit Regression Start ---
+# -Probit Regression Models-
 
-#myprobit <- glm(winner ~ kills + deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + sum_games_by_id + days_in_game + days_since_first_game + pct_days_in_game + f0 + f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + top + jungle + mid + bot_carry + bot_support, family=binomial(link="probit"), data=allmydata)
+#myprobit <- glm(winner ~ kills + deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f000 + f001 + top + jungle + mid + bot_carry + bot_support, family=binomial(link="probit"), data=allmydata)
 #summary(myprobit)
 #confint(myprobit)
 
