@@ -1,6 +1,7 @@
 #!/usr/bin/env - Rscript nameofthefile.R
-
-
+library("DataCombine")
+#libray("dplyr")
+#libray("ggplot2")
 
 # --- Read in and Summarize Data ---
 mydata = read.csv("normalized.csv")
@@ -182,6 +183,7 @@ sorteddata$mid <- ifelse(sorteddata$lane=="MIDDLE",1,0)
 sorteddata$bot_carry <- ifelse(sorteddata$role=="DUO_CARRY",1,0)
 sorteddata$bot_support <- ifelse(sorteddata$role=="DUO_SUPPORT",1,0)
 
+sorteddata$sum_games_for_lag <- sorteddata$sum_games_by_id
 
 # --- Transforming the Data ---
 # Creating a dataframe of RANKED_SOLO_5x5 data and a dataframe of TEAM_RANKED_5x5 data
@@ -191,17 +193,50 @@ sorteddata$bot_support <- ifelse(sorteddata$role=="DUO_SUPPORT",1,0)
 
 mysolodata <- subset(sorteddata, queue == "RANKED_SOLO_5x5")
 myteamdata <- subset(sorteddata, queue == "RANKED_TEAM_5x5")
-rm0 <- subset(sorteddata, summoner_id == 40532886)
-rm1 <- subset(sorteddata, summoner_id == 31307983)
-rm2 <- subset(sorteddata, summoner_id == 48565039)
-rm3 <- subset(sorteddata, summoner_id == 25279066)
-rm4 <- subset(sorteddata, summoner_id == 31995521)
-rm5 <- subset(sorteddata, summoner_id == 26243614)
-rm6 <- subset(sorteddata, summoner_id == 50879700)
-rm7 <- subset(sorteddata, summoner_id == 30601794)
-rm8 <- subset(sorteddata, summoner_id == 21269208)
 
+# These are for transformations for lags. The rm0-rm8.csv files are all adjustable. Make player specific
+# changes there and then the file will be automatically read into the master dataset.
+#rm0 <- subset(sorteddata, summoner_id == 40532886)
+#rm1 <- subset(sorteddata, summoner_id == 31307983)
+#rm2 <- subset(sorteddata, summoner_id == 48565039)
+#rm3 <- subset(sorteddata, summoner_id == 25279066)
+#rm4 <- subset(sorteddata, summoner_id == 31995521)
+#rm5 <- subset(sorteddata, summoner_id == 26243614)
+#rm6 <- subset(sorteddata, summoner_id == 50879700)
+#rm7 <- subset(sorteddata, summoner_id == 30601794)
+#rm8 <- subset(sorteddata, summoner_id == 21269208)
+
+#write.csv(rm0, file="rm0.csv")
+#write.csv(rm1, file="rm1.csv")
+#write.csv(rm2, file="rm2.csv")
+#write.csv(rm3, file="rm3.csv")
+#write.csv(rm4, file="rm4.csv")
+#write.csv(rm5, file="rm5.csv")
+#write.csv(rm6, file="rm6.csv")
+#write.csv(rm7, file="rm7.csv")
+#write.csv(rm8, file="rm8.csv")
+
+#rm0 <- read.csv("rm0.csv")
+#rm1 <- read.csv("rm1.csv")
+#rm2 <- read.csv("rm2.csv")
+#rm3 <- read.csv("rm3.csv")
+#rm4 <- read.csv("rm4.csv")
+#rm5 <- read.csv("rm5.csv")
+#rm6 <- read.csv("rm6.csv")
+#rm7 <- read.csv("rm7.csv")
+#rm8 <- read.csv("rm8.csv")
+
+
+#allmydata <- sorteddata[order(match_timestamp),]
 allmydata <- sorteddata
+
+#mylinreg0 <- lm(kills ~ three_month_sumgames + minions_killed, data=rm6)
+#mylinreg1 <- lm(kills ~ three_month_sumgames + minions_killed, data=rm7)
+#mylinreg2 <- lm(kills ~ three_month_sumgames + minions_killed, data=rm8)
+
+#summary(mylinreg0)
+#summary(mylinreg1)
+#summary(mylinreg2)
 
 
 # --- Summarizing and Saving the Final Dataset ---
@@ -209,28 +244,4 @@ allmydata <- sorteddata
 #head(allmydata)
 #summary(allmydata)
 
-#write.csv(allmydata, file="allmydata.csv")
-
-
-# --- Describing & Visualizing the Data ---
-#      -Creating and Developing Models-
-
-
-# - Linear Regression Models -
-
-#mylinreg <- lm(kills ~ deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + winner + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f0 + f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + top + jungle + mid + bot_carry + bot_support, data=allmydata)
-
-#summary(mylinreg)
-
-#data(allmydata)
-#attach(allmydata)
-#plot(wards_placed, assists)
-#abline(mylinreg)
-#detach(allmydata)
-
-# -Probit Regression Models-
-
-#myprobit <- glm(winner ~ kills + deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f000 + f001 + top + jungle + mid + bot_carry + bot_support, family=binomial(link="probit"), data=allmydata)
-#summary(myprobit)
-#confint(myprobit)
-
+write.csv(allmydata, file="allmydata.csv")
