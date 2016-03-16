@@ -1,8 +1,8 @@
 #!/usr/bin/env - Rscript nameofthefile.R
 library("DataCombine")
-library("dplyr")
-library("ggplot2")
-library("stargazer")
+#library("dplyr")
+#library("ggplot2")
+#library("stargazer")
 
 # --- Read in and Summarize Data ---
 #mydata = read.csv("analysisdata.csv")
@@ -24,15 +24,19 @@ library("stargazer")
 #rm7 <- read.csv("rm7.csv")
 #rm8 <- read.csv("rm8.csv")
 rmall <- read.csv("rmall.csv")
+#rmasolo <- subset(rmall, queue == "RANKED_SOLO_5x5")
+#rmateam <- subset(rmall, queue == "RANKED_TEAM_5x5")
 
-mylinreg0 <- lm(gold_earned ~ kda + three_month_sumgames + three_month_fcount + wards_placed + total_damage_taken + wards_killed + total_damage_dealt_to_champions + minions_killed + tower_kills, data=rmall)
-#+ team_inhibitor_kills + team_dragon_kills + team_baron_kills + gold_spent + team_first_tower + team_tower_kills + total_damage_dealt + sum_games_by_id + alltmfamcount 
+mylinreg0 <- lm(gold_earned ~ kda + one_month_sumgames + one_month_fcount + wards_placed + total_damage_taken + wards_killed + total_damage_dealt_to_champions + minions_killed + tower_kills, data=rmall)
+mylinreg1 <- lm(gold_earned ~ kda + three_month_sumgames + three_month_fcount + wards_placed + total_damage_taken + wards_killed + total_damage_dealt_to_champions + minions_killed + tower_kills, data=rmall)
+
+#+ team_inhibitor_kills + team_dragon_kills + team_baron_kills + gold_spent + team_first_tower + team_tower_kills + total_damage_dealt + sum_games_by_id + alltmfamcount + three_month_sumgames + three_month_fcount 
 
 #mylinreg1 <- lm(kda ~ three_month_sumgames + three_month_fcount + sum_games_by_id + alltmfamcount + wards_placed + wards_killed + total_damage_dealt_to_champions + gold_spent + minions_killed, data=rm7)
 #mylinreg2 <- lm(kda ~ three_month_sumgames + three_month_fcount + sum_games_by_id + alltmfamcount + wards_placed + wards_killed + total_damage_dealt_to_champions + gold_spent + minions_killed, data=rm8)
 
-#summary(mylinreg0)
-#summary(mylinreg1)
+summary(mylinreg0)
+summary(mylinreg1)
 #summary(mylinreg2)
 
 
@@ -81,5 +85,8 @@ mylinreg0 <- lm(gold_earned ~ kda + three_month_sumgames + three_month_fcount + 
 
 #rm0lags <- slide(rm0, Var = "f00", slideBy = -3)
 #head(rm0lags)
+
+
+
 
 #stargazer(mylinreg0, title="Gold Earned")
