@@ -1,0 +1,75 @@
+
+Base Regression
+=============================================================
+                                     Dependent variable:     
+                                -----------------------------
+                                         gold_earned         
+-------------------------------------------------------------
+kda                                       42.236***          
+                                           (2.934)           
+                                                             
+sight_wards_bought_in_game                49.730***          
+                                           (6.418)           
+                                                             
+vision_wards_bought_in_game              -53.684***          
+                                          (10.095)           
+                                                             
+wards_placed                              45.958***          
+                                           (1.539)           
+                                                             
+wards_killed                              67.345***          
+                                           (4.493)           
+                                                             
+total_damage_taken                        0.056***           
+                                           (0.001)           
+                                                             
+total_damage_dealt                        0.018***           
+                                          (0.0003)           
+                                                             
+total_damage_dealt_to_champions           0.104***           
+                                           (0.001)           
+                                                             
+minions_killed                            4.104***           
+                                           (0.197)           
+                                                             
+tower_kills                               59.586***          
+                                           (9.197)           
+                                                             
+first_blood_kill                          89.695**           
+                                          (35.596)           
+                                                             
+first_tower_assist                       314.231***          
+                                          (44.074)           
+                                                             
+team_first_blood                           -31.082           
+                                          (21.425)           
+                                                             
+team_first_tower                         -133.546***         
+                                          (22.098)           
+                                                             
+team_first_dragon                        -126.180***         
+                                          (24.985)           
+                                                             
+team_tower_kills                         220.520***          
+                                           (6.171)           
+                                                             
+team_inhibitor_kills                     -64.793***          
+                                          (13.059)           
+                                                             
+team_dragon_kills                        154.292***          
+                                          (11.653)           
+                                                             
+team_baron_kills                         340.803***          
+                                          (19.245)           
+                                                             
+Constant                                3,260.155***         
+                                          (39.226)           
+                                                             
+-------------------------------------------------------------
+Observations                               11,215            
+R2                                          0.924            
+Adjusted R2                                 0.924            
+Residual Std. Error                1,028.966 (df = 11195)    
+F Statistic                     7,190.835*** (df = 19; 11195)
+=============================================================
+Note:                             *p<0.1; **p<0.05; ***p<0.01
