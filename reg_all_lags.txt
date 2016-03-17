@@ -1,0 +1,99 @@
+
+All Lags
+============================================================
+                                    Dependent variable:     
+                                ----------------------------
+                                        gold_earned         
+------------------------------------------------------------
+kda                                      47.446***          
+                                          (2.991)           
+                                                            
+sight_wards_bought_in_game               64.647***          
+                                          (6.983)           
+                                                            
+vision_wards_bought_in_game              -36.647***         
+                                          (10.218)          
+                                                            
+wards_placed                             37.101***          
+                                          (1.783)           
+                                                            
+wards_killed                             49.963***          
+                                          (4.509)           
+                                                            
+total_damage_taken                        0.064***          
+                                          (0.001)           
+                                                            
+total_damage_dealt                        0.018***          
+                                          (0.0004)          
+                                                            
+total_damage_dealt_to_champions           0.098***          
+                                          (0.002)           
+                                                            
+minions_killed                            5.330***          
+                                          (0.392)           
+                                                            
+tower_kills                              26.977***          
+                                          (9.671)           
+                                                            
+first_blood_kill                         165.780***         
+                                          (36.113)          
+                                                            
+first_tower_assist                       215.906***         
+                                          (44.630)          
+                                                            
+team_first_blood                         -55.405**          
+                                          (21.662)          
+                                                            
+team_first_tower                        -118.555***         
+                                          (22.297)          
+                                                            
+team_first_dragon                       -126.538***         
+                                          (25.177)          
+                                                            
+team_tower_kills                         226.339***         
+                                          (6.300)           
+                                                            
+team_inhibitor_kills                     -81.154***         
+                                          (13.306)          
+                                                            
+team_dragon_kills                        128.045***         
+                                          (11.870)          
+                                                            
+team_baron_kills                         354.695***         
+                                          (19.620)          
+                                                            
+jungle                                   542.118***         
+                                          (64.543)          
+                                                            
+mid                                      329.372***         
+                                          (38.230)          
+                                                            
+bot_carry                                721.634***         
+                                          (34.009)          
+                                                            
+bot_support                              962.854***         
+                                          (58.385)          
+                                                            
+one_month_sumgames                        2.112***          
+                                          (0.288)           
+                                                            
+one_month_fcount                         -8.121***          
+                                          (0.430)           
+                                                            
+three_month_sumgames                     -0.670***          
+                                          (0.117)           
+                                                            
+three_month_fcount                        2.613***          
+                                          (0.178)           
+                                                            
+Constant                                2,554.029***        
+                                          (62.273)          
+                                                            
+------------------------------------------------------------
+Observations                               9,864            
+R2                                         0.933            
+Adjusted R2                                0.933            
+Residual Std. Error                 973.964 (df = 9836)     
+F Statistic                     5,087.746*** (df = 27; 9836)
+============================================================
+Note:                            *p<0.1; **p<0.05; ***p<0.01

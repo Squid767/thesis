@@ -1,60 +1,73 @@
 \documentclass{article}
+\usepackage{longtable}
 \begin{document}
 \begin{table}[!htbp] \centering 
-  \caption{Gold Earned} 
+  \caption{Base Regression Results} 
   \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-3} } 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
  & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
 \cline{2-2} 
-\\[-1.8ex] & gold\_earned \\ 
+\\[-1.8ex] & \multicolumn{1}{c}{gold\_earned} \\ 
 \hline \\[-1.8ex] 
- kda & 132.586$^{***}$ \\ 
-  & (4.078) \\ 
-  & \\ 
- three\_month\_sumgames & 0.817$^{***}$ \\ 
-  & (0.145) \\ 
-  & \\ 
- three\_month\_fcount & $-$3.246$^{***}$ \\ 
-  & (0.302) \\ 
-  & \\ 
- sum\_games\_by\_id & $-$0.111$^{***}$ \\ 
-  & (0.042) \\ 
-  & \\ 
- alltmfamcount & 1.487$^{***}$ \\ 
-  & (0.218) \\ 
-  & \\ 
- wards\_placed & 30.293$^{***}$ \\ 
-  & (1.996) \\ 
-  & \\ 
- total\_damage\_taken & 0.103$^{***}$ \\ 
-  & (0.002) \\ 
-  & \\ 
- wards\_killed & 153.287$^{***}$ \\ 
-  & (6.352) \\ 
-  & \\ 
- total\_damage\_dealt\_to\_champions & 0.163$^{***}$ \\ 
-  & (0.002) \\ 
-  & \\ 
- minions\_killed & 9.745$^{***}$ \\ 
-  & (0.254) \\ 
-  & \\ 
- tower\_kills & 387.182$^{***}$ \\ 
-  & (12.390) \\ 
-  & \\ 
- Constant & 3,295.658$^{***}$ \\ 
-  & (60.418) \\ 
-  & \\ 
-\hline \\[-1.8ex] 
-Observations & 9,864 \\ 
-R$^{2}$ & 0.851 \\ 
-Adjusted R$^{2}$ & 0.850 \\ 
-Residual Std. Error & 1,454.949 (df = 9852) \\ 
-F Statistic & 5,101.171$^{***}$ (df = 11; 9852) \\ 
+ kda & 45.526^{***} \\ 
+  & (2.857) \\ 
+  sight\_wards\_bought\_in\_game & 70.413^{***} \\ 
+  & (6.390) \\ 
+  vision\_wards\_bought\_in\_game & -51.349^{***} \\ 
+  & (9.818) \\ 
+  wards\_placed & 37.953^{***} \\ 
+  & (1.682) \\ 
+  wards\_killed & 51.890^{***} \\ 
+  & (4.388) \\ 
+  total\_damage\_taken & 0.065^{***} \\ 
+  & (0.001) \\ 
+  total\_damage\_dealt & 0.017^{***} \\ 
+  & (0.0004) \\ 
+  total\_damage\_dealt\_to\_champions & 0.101^{***} \\ 
+  & (0.001) \\ 
+  minions\_killed & 5.684^{***} \\ 
+  & (0.370) \\ 
+  tower\_kills & 32.355^{***} \\ 
+  & (9.283) \\ 
+  first\_blood\_kill & 160.141^{***} \\ 
+  & (34.526) \\ 
+  first\_tower\_assist & 235.492^{***} \\ 
+  & (42.768) \\ 
+  team\_first\_blood & -45.091^{**} \\ 
+  & (20.718) \\ 
+  team\_first\_tower & -112.842^{***} \\ 
+  & (21.385) \\ 
+  team\_first\_dragon & -113.323^{***} \\ 
+  & (24.181) \\ 
+  team\_tower\_kills & 227.078^{***} \\ 
+  & (5.984) \\ 
+  team\_inhibitor\_kills & -67.583^{***} \\ 
+  & (12.637) \\ 
+  team\_dragon\_kills & 138.341^{***} \\ 
+  & (11.312) \\ 
+  team\_baron\_kills & 343.475^{***} \\ 
+  & (18.656) \\ 
+  jungle & 553.101^{***} \\ 
+  & (61.465) \\ 
+  mid & 325.173^{***} \\ 
+  & (36.215) \\ 
+  bot\_carry & 712.383^{***} \\ 
+  & (31.916) \\ 
+  bot\_support & 987.548^{***} \\ 
+  & (54.544) \\ 
+  Constant & 2,521.562^{***} \\ 
+  & (55.522) \\ 
+ \hline \\[-1.8ex] 
+Observations & \multicolumn{1}{c}{11,215} \\ 
+R$^{2}$ & \multicolumn{1}{c}{0.929} \\ 
+Adjusted R$^{2}$ & \multicolumn{1}{c}{0.929} \\ 
+Residual Std. Error & \multicolumn{1}{c}{994.494 (df = 11191)} \\ 
+F Statistic & \multicolumn{1}{c}{6,393.704$^{***}$ (df = 23; 11191)} \\ 
 \hline 
 \hline \\[-1.8ex] 
 \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
-\end{table}   
+\end{table} 
 \end{document}

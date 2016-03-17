@@ -2,17 +2,14 @@
 library("DataCombine")
 #library("dplyr")
 #library("ggplot2")
-#library("stargazer")
+library("stargazer")
+
+# One month in epoch milliseconds = 2629743000
+# Three months = 7889229000
+
 
 # --- Read in and Summarize Data ---
-#mydata = read.csv("analysisdata.csv")
-#head(mydata)
-#summary(mydata)
-
-
-
-
-
+# ----------------------------------
 
 #rm0 <- read.csv("rm0.csv")
 #rm1 <- read.csv("rm1.csv")
@@ -27,66 +24,57 @@ rmall <- read.csv("rmall.csv")
 #rmasolo <- subset(rmall, queue == "RANKED_SOLO_5x5")
 #rmateam <- subset(rmall, queue == "RANKED_TEAM_5x5")
 
-mylinreg0 <- lm(gold_earned ~ kda + one_month_sumgames + one_month_fcount + wards_placed + total_damage_taken + wards_killed + total_damage_dealt_to_champions + minions_killed + tower_kills, data=rmall)
-mylinreg1 <- lm(gold_earned ~ kda + three_month_sumgames + three_month_fcount + wards_placed + total_damage_taken + wards_killed + total_damage_dealt_to_champions + minions_killed + tower_kills, data=rmall)
-
-#+ team_inhibitor_kills + team_dragon_kills + team_baron_kills + gold_spent + team_first_tower + team_tower_kills + total_damage_dealt + sum_games_by_id + alltmfamcount + three_month_sumgames + three_month_fcount 
-
-#mylinreg1 <- lm(kda ~ three_month_sumgames + three_month_fcount + sum_games_by_id + alltmfamcount + wards_placed + wards_killed + total_damage_dealt_to_champions + gold_spent + minions_killed, data=rm7)
-#mylinreg2 <- lm(kda ~ three_month_sumgames + three_month_fcount + sum_games_by_id + alltmfamcount + wards_placed + wards_killed + total_damage_dealt_to_champions + gold_spent + minions_killed, data=rm8)
-
-summary(mylinreg0)
-summary(mylinreg1)
-#summary(mylinreg2)
-
-
-
-
-
+#head(rmall)stargazer(linear.1, linear.2, probit.model, title="Regression Results", align=TRUE, dep.var.labels=c("Overall Rating","High Rating"), covariate.labels=c("Handling of Complaints","No Special Privileges", "Opportunity to Learn","Performance-Based Raises","Too Critical","Advancement"), omit.stat=c("LL","ser","f"), no.space=TRUE)
+#summary(rmall)
 
 
 # --- Describing & Visualizing the Data ---
-#      -Creating and Developing Models-
+# ---- Creating and Developing Models-------
+
+# Vars Removed from regression: top (base-case for roles), first_blood_assist (singularities --> NA), inhibitor_kills(low t-value, only significant at 0.1), team_first_baron & team_first_inhibitor & first_tower_kill & first_inhibitor_kill & first_inhibitor_assist(low t-value, insignificant)
+basecase <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support, data=rmall)
+one_month_exp <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + one_month_sumgames, data=rmall)
+one_month_fam <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + one_month_fcount, data=rmall)
+one_month_all <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + one_month_sumgames + one_month_fcount, data=rmall)
+three_month_exp <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + three_month_sumgames, data=rmall)
+three_month_fam <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + three_month_fcount, data=rmall)
+three_month_all <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + three_month_sumgames + three_month_fcount, data=rmall)
+all_lags <- lm(gold_earned ~ kda + sight_wards_bought_in_game + vision_wards_bought_in_game + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_damage_dealt_to_champions + minions_killed + tower_kills + first_blood_kill + first_tower_assist + team_first_blood + team_first_tower + team_first_dragon + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + jungle + mid + bot_carry + bot_support + one_month_sumgames + one_month_fcount + three_month_sumgames + three_month_fcount, data=rmall)
+
+
+#summary(basecase)
+#summary(one_month_all)
+#summary(three_month_all)
+#summary(all_lags)
 
 
 # - Linear Regression Models -
 
-#mylinreg <- lm(kills ~ deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + winner + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f0 + f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + top + jungle + mid + bot_carry + bot_support, data=allmydata)
-
-#summary(mylinreg)
-
-#data(allmydata)
-#attach(allmydata)
-#plot(wards_placed, assists)
+mylinreg <- lm(gold_earned ~ kda, data=rmall)
+#data(rmall)
+#attach(rmall)
+#plot(gold_earned, kda)
 #abline(mylinreg)
-#detach(allmydata)
+#detach(rmall)
 
-# -Probit Regression Models-
-#myproreg0 <- glm(winner ~ three_month_sumgames + three_month_fcount + sum_games_by_id + alltmfamcount + wards_placed + total_damage_taken + total_damage_dealt + wards_killed + total_damage_dealt_to_champions + gold_earned + gold_spent + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills, data=rmall)
-#myprobit <- glm(winner ~ kills + deaths + assists + double_kills + triple_kills + quadra_kills + penta_kills + wards_placed + wards_killed + total_damage_taken + total_damage_dealt + total_time_crowd_control_dealt + gold_earned + minions_killed + tower_kills + inhibitor_kills + team_first_blood + team_first_tower + team_first_inhibitor + team_first_baron + team_tower_kills + team_inhibitor_kills + team_dragon_kills + team_baron_kills + days_in_game + days_since_first_game + pct_days_in_game + f000 + f001 + top + jungle + mid + bot_carry + bot_support, family=binomial(link="probit"), data=allmydata)
 
-#summary(myproreg0)
-#summary(myprobit)
-#confint(myprobit)
+# --- Final Output of Regression Tables  ---
+# ------------------------------------------
 
-# --- Final Output & Clean-up ---
+#stargazer(basecase, title="Gold Earned")
+
+stargazer(basecase, title="Base Regression", type = "text", out="reg_basecase.txt")
+stargazer(one_month_all, title="One Month Lagged", type = "text", out="reg_one_month_lag.txt")
+stargazer(three_month_all, title="Three Mongh Lagged", type = "text", out="reg_three_month_lag.txt")
+stargazer(all_lags, title="All Lags", type = "text", out="reg_all_lags.txt")
+
+
+
+
+# --- File Cleanup ---
+# --------------------
 
 #detach(package:"DataCombine")
-
-
-
-
-
-# --- Generating Lag Variables for each of the Players ---
-#                - I did this in Excel -
-
-# One month in epoch milliseconds = 2629743000
-# Three months = 7889229000
-
-#rm0lags <- slide(rm0, Var = "f00", slideBy = -3)
-#head(rm0lags)
-
-
-
-
-#stargazer(mylinreg0, title="Gold Earned")
+#detach(package:"dplyr")
+#detach(package:"ggplot2")
+#detach(package:"stargazer")

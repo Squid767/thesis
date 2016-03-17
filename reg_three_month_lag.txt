@@ -1,0 +1,93 @@
+
+Three Mongh Lagged
+============================================================
+                                    Dependent variable:     
+                                ----------------------------
+                                        gold_earned         
+------------------------------------------------------------
+kda                                      44.345***          
+                                          (3.040)           
+                                                            
+sight_wards_bought_in_game               71.705***          
+                                          (7.094)           
+                                                            
+vision_wards_bought_in_game              -45.707***         
+                                          (10.357)          
+                                                            
+wards_placed                             36.734***          
+                                          (1.805)           
+                                                            
+wards_killed                             55.127***          
+                                          (4.580)           
+                                                            
+total_damage_taken                        0.064***          
+                                          (0.001)           
+                                                            
+total_damage_dealt                        0.018***          
+                                          (0.0004)          
+                                                            
+total_damage_dealt_to_champions           0.100***          
+                                          (0.002)           
+                                                            
+minions_killed                            5.426***          
+                                          (0.399)           
+                                                            
+tower_kills                              30.330***          
+                                          (9.841)           
+                                                            
+first_blood_kill                         165.492***         
+                                          (36.752)          
+                                                            
+first_tower_assist                       213.019***         
+                                          (45.425)          
+                                                            
+team_first_blood                         -58.449***         
+                                          (22.046)          
+                                                            
+team_first_tower                        -114.138***         
+                                          (22.694)          
+                                                            
+team_first_dragon                       -125.938***         
+                                          (25.626)          
+                                                            
+team_tower_kills                         227.235***         
+                                          (6.412)           
+                                                            
+team_inhibitor_kills                     -75.577***         
+                                          (13.539)          
+                                                            
+team_dragon_kills                        126.886***         
+                                          (12.081)          
+                                                            
+team_baron_kills                         328.226***         
+                                          (19.911)          
+                                                            
+jungle                                   541.358***         
+                                          (65.684)          
+                                                            
+mid                                      324.906***         
+                                          (38.908)          
+                                                            
+bot_carry                                739.335***         
+                                          (34.600)          
+                                                            
+bot_support                              952.666***         
+                                          (59.304)          
+                                                            
+three_month_sumgames                       -0.019           
+                                          (0.080)           
+                                                            
+three_month_fcount                         0.070            
+                                          (0.119)           
+                                                            
+Constant                                2,566.293***        
+                                          (62.915)          
+                                                            
+------------------------------------------------------------
+Observations                               9,864            
+R2                                         0.931            
+Adjusted R2                                0.931            
+Residual Std. Error                 991.336 (df = 9838)     
+F Statistic                     5,290.125*** (df = 25; 9838)
+============================================================
+Note:                            *p<0.1; **p<0.05; ***p<0.01

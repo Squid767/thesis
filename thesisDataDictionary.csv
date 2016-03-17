@@ -1,4 +1,10 @@
-team_id,The Tunique eam-Id of the given match's tracked player
+Dependent_Variable,
+gold_earned,The total gold earned by a player in a game
+,
+,
+,
+Independent_Variables,
+team_id,The unique Team-Id of the given match's tracked player
 match_id,The unique Match-Id of the given match
 summoner_id,The unique Player-ID of the player whose stats are tracked in a given row
 match_timestamp,The timestamp in Epoch milliseconds of the given match
@@ -27,7 +33,6 @@ total_damage_dealt_to_champions,The total damage a player dealt to all enemy cha
 true_damage_dealt_to_champions,The total true (non-reducable) damage a player dealt to all enemy champions within a game
 magic_damage_dealt_to_champions,The total magic (MagicResist-reducable) damage a player dealt to all enemy champions within a game
 physical_damage_dealt_to_champions,The total physical (Armor-reducable) damage a player took dealt to all enemy champions within a game
-gold_earned,The total gold earned by a player in a game
 gold_spent,The total gold spent by a player in a game
 minions_killed,The total number of minions a player killed within a game
 tower_kills,The total number of towers a player destroyed within a game
@@ -40,7 +45,7 @@ first_inhibitor_kill,"1 if the player performed the first inhibitor kill of the 
 first_inhibitor_assist,"1 if the player participated in the first inhibitor kill of the match, 0 if not"
 champion_id,The id representing the specific champion the player used in a game
 lane,The lane the player primarily acted within during the given game
-role,The role the player primarily acted in during a give ngame
+role,The role the player primarily acted in during a given game
 winner,"1 if the player's team won the game, 0 if not"
 team_first_blood,"1 if the player's team performed the first champion kill of the match, 0 if not"
 team_first_tower,"1 if the player's team performed the first tower kill of the match, 0 if not"
@@ -112,3 +117,15 @@ jungle,1 if the player had the “jungle” role within the game
 mid,1 if the player had the “middle” role within a game
 bot_carry,1 if the player had the “bot_carry” role within the game
 bot_support,1 if the player had the “bot_support” role within the game
+sum_games_for_lag,A copy of sum_games_by_id made for ease of data transformation
+min_lag_range_three_month,A variable that tracks the difference between the current time and the period start time for each player in epoch milliseconds. =milliseconds_since_first_game – 3months
+games_to_remove_three_month,The number of games the player has played that falls outside of the 3 month window
+three_month_sumgames,The number of games the player has played in the last 3 months
+f_to_remove_three_month,The number of times the player has had a roster member on their team outside of the 3 month window
+three_month_fcount,The number of times the player has had a roster member on their team within the last 3 months
+kda,The KDA is = (kills+assists)/deaths of a player within a specific game
+min_lag_range_one_month,A variable that tracks the difference between the current time and the period start time for each player in epoch milliseconds.  =milliseconds_since_first_game – 1months
+games_to_remove_one_month,The number of games the player has played that falls outside of the 1 month window
+one_month_sumgames,The number of games the player has played in the last month
+f_to_remove_one_month,The number of times the player has had a roster member on their team outside of the 1 month window
+one_month_fcount,The number of times the player has had a roster member on their team within the last month
