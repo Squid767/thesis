@@ -185,6 +185,8 @@ sorteddata$bot_support <- ifelse(sorteddata$role=="DUO_SUPPORT",1,0)
 
 sorteddata$sum_games_for_lag <- sorteddata$sum_games_by_id
 
+# --- Creating the Summoner Dummy Variables
+
 # --- Transforming the Data ---
 # Creating a dataframe of RANKED_SOLO_5x5 data and a dataframe of TEAM_RANKED_5x5 data
 # from the comprehensive dataframe of All Matches. Also player specific dataframes for each of the roster members. 

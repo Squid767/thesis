@@ -1,0 +1,131 @@
+Dependent_Variable,
+gold_earned,The total gold earned by a player in a game
+,
+,
+,
+Independent_Variables,
+team_id,The unique Team-Id of the given match's tracked player
+match_id,The unique Match-Id of the given match
+summoner_id,The unique Player-ID of the player whose stats are tracked in a given row
+match_timestamp,The timestamp in Epoch milliseconds of the given match
+queue,The type of match being played (either Team or Solo 5v5)
+kills,The number of enemy champions killed by the player in a game
+deaths,The number of time a player died in a game
+assists,The number of times a player contributed to killing an enemy champion but did not land the killing blow within a game
+double_kills,The number of times a player killed a second enemy champion within 30 seconds of the first kill
+triple_kills,The number of times a player killed a third enemy champion within 30 seconds of the first kill
+quadra_kills,The number of times a player killed a fourth enemy champion within 30 seconds of the first kill
+penta_kills,The number of times a player killed a fifth enemy champion within 30 seconds of the first kill
+sight_wards_bought_in_game,The number of vision-granting consumable items a player bought in a game
+vision_wards_bought_in_game,The number of vision and enemy ward sighting consumable items a player bought within a game
+wards_placed,The total number of vision-granting wards a player used within a game
+wards_killed,The total number of enemy vision-granting wards a player destroyed within a game
+total_damage_taken,The total damage a player took from all sources within a game
+true_damage_taken,The total true (non-reducable) damage a player took from all sources within a game
+magic_damage_taken,The total magic (MagicResist-reducable) damage a player took from all sources within a game
+physical_damage_taken,The total physical (Armor-reducable) damage a player took from all sources within a game
+total_damage_dealt,The total damage a player dealt to all sources within a game
+true_damage_dealt,The total true (non-reducable) damage a player dealt to all sources within a game
+magic_damage_dealt,The total magic (MagicResist-reducable) damage a player dealt to all sources within a game
+physical_damage_dealt,The total physical (Armor-reducable) damage a player took dealt to all sources within a game
+total_time_crowd_control_dealt,The total crowd-control (restriction on movement and action-taking) a player dealt to all sources
+total_damage_dealt_to_champions,The total damage a player dealt to all enemy champions within a game
+true_damage_dealt_to_champions,The total true (non-reducable) damage a player dealt to all enemy champions within a game
+magic_damage_dealt_to_champions,The total magic (MagicResist-reducable) damage a player dealt to all enemy champions within a game
+physical_damage_dealt_to_champions,The total physical (Armor-reducable) damage a player took dealt to all enemy champions within a game
+gold_spent,The total gold spent by a player in a game
+minions_killed,The total number of minions a player killed within a game
+tower_kills,The total number of towers a player destroyed within a game
+inhibitor_kills,The total number of inhibitors a player destroyed within a game
+first_blood_kill,"1 if the player performed the first champion kill of the match, 0 if not"
+first_blood_assist,"1 if the player participated in the first champion kill of the match, 0 if not"
+first_tower_kill,"1 if the player performed the first tower kill of the match, 0 if not"
+first_tower_assist,"1 if the player participated in the first tower kill of the match, 0 if not"
+first_inhibitor_kill,"1 if the player performed the first inhibitor kill of the match, 0 if not"
+first_inhibitor_assist,"1 if the player participated in the first inhibitor kill of the match, 0 if not"
+champion_id,The id representing the specific champion the player used in a game
+lane,The lane the player primarily acted within during the given game
+role,The role the player primarily acted in during a given game
+winner,"1 if the player's team won the game, 0 if not"
+team_first_blood,"1 if the player's team performed the first champion kill of the match, 0 if not"
+team_first_tower,"1 if the player's team performed the first tower kill of the match, 0 if not"
+team_first_inhibitor,"1 if the player's team performed the first inhibitor kill of the match, 0 if not"
+team_first_dragon,"1 if the player's team participated in the first dragon kill of the match, 0 if not"
+team_first_baron,"1 if the player's team performed the first baron kill of the match, 0 if not"
+team_tower_kills,The number of towers the player's team destroyed
+team_inhibitor_kills,The number of inhibitors the player's team destroyed
+team_dragon_kills,The number of dragons the player's team killed
+team_baron_kills,The number of barons the player's team killed
+tm0,The id of one of the five team members of the player's team within a given match
+tm1,The id of one of the five team members of the player's team within a given match
+tm2,The id of one of the five team members of the player's team within a given match
+tm3,The id of one of the five team members of the player's team within a given match
+tm4,The id of one of the five team members of the player's team within a given match
+rm0,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm1,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm2,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm3,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm4,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm5,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm6,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm7,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm8,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+rm9,"The id of one of the 5-10 roster members within the player's pre-constructed team, 0 if none"
+failingtm,A number from 0-4 representing which of the tm0-tm4 fields is the tracked player in a given match
+passingtm,A 4-digit number from 0-4 representing which of the tm0-tm4 fields are not tracked player in a given match
+tm00,The id-numbers of one of the tm0-tm4 passingtm players
+tm01,The id-numbers of one of the tm0-tm4 passingtm players
+tm02,The id-numbers of one of the tm0-tm4 passingtm players
+tm03,The id-numbers of one of the tm0-tm4 passingtm players
+longavg,A dummy variable representing if a match was played during the period where game-length average was longer (0) or shorter (1)
+bool,A variable of all 1s used as a base if a boolean 1 is needed elsewhere in calculations
+sum_games_by_id,The sum of games a player has played within the tracked period
+is_first_game,"1 if the match is the player's first match within the tracked period, 0 if it is not"
+milliseconds_in_game,The sum of milliseconds a player has spent playing in matches (calculated by the sum of games*average game length)
+days_in_game,milliseconds_in_game represented in 24hour days
+workdays_in_game_8hrs,milliseconds_in_game represented in 8hour work-days
+first_game_timestamp,"The match timestamp for a given player's first game within the tracked period. Takes the millisecond value if it is the first game, and 0 if not"
+first_game_timestamp_by_id,Player-specific first_game_timestamp imposed across all collumns
+milliseconds_since_first_game,The milliseconds since the player's first game
+days_since_first_game,The 24hour days since the player's first game
+workdays_since_first_game_8hrs,The 8hour days since the player's first game
+pct_days_in_game,The percent of time the player spends in game within the tracked period
+tm00count,"1 if tm00 is on the player's team-roster, 0 if not"
+tm01count,"1 if tm01 is on the player's team-roster, 0 if not"
+tm02count,"1 if tm02 is on the player's team-roster, 0 if not"
+tm03count,"1 if tm03 is on the player's team-roster, 0 if not"
+tm00famcount,The sum of times tm00 has been 1 in past games for a specific player
+tm01famcount,The sum of times tm01 has been 1 in past games for a specific player
+tm02famcount,The sum of times tm02 has been 1 in past games for a specific player
+tm03famcount,The sum of times tm03 has been 1 in past games for a specific player
+alltmfamcount,The sum of times tm00-tm04 has been 1 in past games for a specific player
+f0,A dummy variable representing a familiarity measure between 0 and 9.99%
+f1,A dummy variable representing a familiarity measure between 10 and 19.99%
+f2,A dummy variable representing a familiarity measure between 20 and 29.99%
+f3,A dummy variable representing a familiarity measure between 30 and 39.99%
+f4,A dummy variable representing a familiarity measure between 40 and 49.99%
+f5,A dummy variable representing a familiarity measure between 50 and 59.99%
+f6,A dummy variable representing a familiarity measure between 60 and 69.99%
+f7,A dummy variable representing a familiarity measure between 70 and 79.99%
+f8,A dummy variable representing a familiarity measure between 80 and 89.99%
+f9,A dummy variable representing a familiarity measure between 90 and 100%
+f00,A dummy variable representing a familiarity measure between 0 and 33.33%
+f01,A dummy variable representing a familiarity measure between 33.34 and 66.66%
+f02,A dummy variable representing a familiarity measure between 66.67 and 100%
+top,1 if the player had the “top” role within a game
+jungle,1 if the player had the “jungle” role within the game
+mid,1 if the player had the “middle” role within a game
+bot_carry,1 if the player had the “bot_carry” role within the game
+bot_support,1 if the player had the “bot_support” role within the game
+sum_games_for_lag,A copy of sum_games_by_id made for ease of data transformation
+min_lag_range_three_month,A variable that tracks the difference between the current time and the period start time for each player in epoch milliseconds. =milliseconds_since_first_game – 3months
+games_to_remove_three_month,The number of games the player has played that falls outside of the 3 month window
+three_month_sumgames,The number of games the player has played in the last 3 months
+f_to_remove_three_month,The number of times the player has had a roster member on their team outside of the 3 month window
+three_month_fcount,The number of times the player has had a roster member on their team within the last 3 months
+kda,The KDA is = (kills+assists)/deaths of a player within a specific game
+min_lag_range_one_month,A variable that tracks the difference between the current time and the period start time for each player in epoch milliseconds.  =milliseconds_since_first_game – 1months
+games_to_remove_one_month,The number of games the player has played that falls outside of the 1 month window
+one_month_sumgames,The number of games the player has played in the last month
+f_to_remove_one_month,The number of times the player has had a roster member on their team outside of the 1 month window
+one_month_fcount,The number of times the player has had a roster member on their team within the last month
