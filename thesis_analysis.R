@@ -31,6 +31,9 @@ rmateam <- subset(rmfinal, queue == "RANKED_TEAM_5x5")
 #hist(rmfinal$three_month_fcount)
 #hist(rmfinal$minions_killed)
 
+rmfinal$one_rm_squared <- (rmfinal$one_month_rm_present_games*rmfinal$one_month_rm_present_games)
+rmfinal$three_rm_squared <- (rmfinal$three_month_rm_present_games*rmfinal$three_month_rm_present_games)
+
 
 # --- Describing & Visualizing the Data ---
 # ---- Creating and Developing Models------- kda
@@ -48,20 +51,42 @@ rmateam <- subset(rmfinal, queue == "RANKED_TEAM_5x5")
 #This is the reg with duo_bools_included
 #all_lags_gold <- lm(gold_earned ~ one_month_sumgames + one_month_fcount + three_month_sumgames + three_month_fcount + one_exp_sqared + one_fam_sqared + three_exp_sqared + three_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + rm0_duo + rm1_duo + rm2_duo + rm3_duo + rm4_duo + rm5_duo + rm6_duo + rm7_duo + rm8_duo + is_preseason, data=rmfinal)
 
-
-#base case is top lane, is_rm_0, solo_queue
-all_lags_gold <- lm(gold_earned ~ one_month_sumgames + one_month_fcount + three_month_sumgames + three_month_fcount + one_exp_sqared + one_fam_sqared + three_exp_sqared + three_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
-all_lags_kda <- lm(kda ~ one_month_sumgames + one_month_fcount + three_month_sumgames + three_month_fcount + one_exp_sqared + one_fam_sqared + three_exp_sqared + three_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
-
+#base case same as above but with om_pct_one_third & tm_pct_one_third  ------ familiarity is the number of games that were played with one or more teammate in them
+#all_lags_gold <- lm(gold_earned ~ one_month_sumgames + one_month_rm_present_games + three_month_sumgames + three_month_rm_present_games + one_exp_sqared + three_exp_sqared + one_rm_squared + three_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + om_pct_two_third + om_pct_three_third + tm_pct_two_third + tm_pct_three_third + is_preseason, data=rmfinal)
+#all_lags_kda <- lm(kda ~ one_month_sumgames + one_month_rm_present_games + three_month_sumgames + three_month_rm_present_games + one_exp_sqared + three_exp_sqared + one_rm_squared + three_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + om_pct_two_third + om_pct_three_third + tm_pct_two_third + tm_pct_three_third + is_preseason, data=rmfinal)
 
 
 
-#summary(base)
-#summary(base_with_roles)
-#summary(one_month_all)
-#summary(three_month_all)
-summary(all_lags_gold)
-summary(all_lags_kda)
+
+
+#one-month fam
+#base case is top lane, is_rm_0, solo_queue ------ familiarity is the number of teammates present across the number of games in the qualifying period
+one_month_fam_gold <- lm(gold_earned ~ one_month_sumgames + one_month_fcount + one_exp_sqared + one_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
+one_month_fam_kda <- lm(kda ~ one_month_sumgames + one_month_fcount + one_exp_sqared + one_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
+
+#three-month fam
+three_month_fam_gold <- lm(gold_earned ~ three_month_sumgames + three_month_fcount + three_exp_sqared + three_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
+three_month_fam_kda <- lm(kda ~ three_month_sumgames + three_month_fcount + three_exp_sqared + three_fam_sqared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + is_preseason, data=rmfinal)
+
+#one-month rm
+#base case is top lane, is_rm_0, solo_queue ------ familiarity is the number of games played with at least one roster member on the team in the qualifying period
+one_month_rm_gold <- lm(gold_earned ~ one_month_sumgames + one_month_rm_present_games + one_exp_sqared + one_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + om_pct_two_third + om_pct_three_third + is_preseason, data=rmfinal)
+one_month_rm_kda <- lm(kda ~ one_month_sumgames + one_month_rm_present_games + one_exp_sqared + one_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + om_pct_two_third + om_pct_three_third + is_preseason, data=rmfinal)
+
+#three-month rm
+three_month_rm_gold <- lm(gold_earned ~ three_month_sumgames + three_month_rm_present_games + three_exp_sqared + three_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + tm_pct_two_third + tm_pct_three_third + is_preseason, data=rmfinal)
+three_month_rm_kda <- lm(kda ~ three_month_sumgames + three_month_rm_present_games + three_exp_sqared + three_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + tm_pct_two_third + tm_pct_three_third + is_preseason, data=rmfinal)
+
+
+summary(one_month_fam_gold)
+summary(one_month_fam_kda)
+summary(three_month_fam_gold)
+summary(three_month_fam_kda)
+summary(one_month_rm_gold)
+summary(one_month_rm_kda)
+summary(three_month_rm_gold)
+summary(three_month_rm_kda)
+
 
 
 
@@ -105,8 +130,9 @@ summary(all_lags_kda)
 #stargazer(base_with_roles, title="Base Role Regression", type = "text", out="reg_base_roles.txt")
 #stargazer(one_month_all, title="One Month Lagged", type = "text", out="reg_one_month_lag.txt")
 #stargazer(three_month_all, title="Three Mongh Lagged", type = "text", out="reg_three_month_lag.txt")
-stargazer(all_lags_gold, title="All Lags - Gold Earned", type = "text", out="gold_earned_all_lags.txt")
-stargazer(all_lags_kda, title="All Lags - KDA", type = "text", out="kda_all_lags.txt")
+
+#stargazer(all_lags_gold, title="All Lags - Gold Earned", type = "text", out="gold_earned_all_lags.txt")
+#stargazer(all_lags_kda, title="All Lags - KDA", type = "text", out="kda_all_lags.txt")
 
 
 

@@ -4,6 +4,8 @@
 #library("ggplot2")
 #library("stargazer")
 
+####CARE THIS WILL ERASE ANY SUBSEQUENT CHANGES TO FINAL YOU HAVE MADE
+
 # One month in epoch milliseconds = 2629743000
 # Three months = 7889229000
 
@@ -63,5 +65,7 @@ rmall$is_preseason <- ifelse(rmall$match_timestamp>=1447210800000, ifelse(rmall$
 
 # --- Export ---
 
+####CARE THIS WILL ERASE ANY SUBSEQUENT CHANGES TO FINAL YOU HAVE MADE
 
-write.csv(rmall, file="rmfinal.csv")
+#write.csv(rmall, file="")
+#                 file="rmfinal.csv"
