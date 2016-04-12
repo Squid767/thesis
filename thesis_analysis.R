@@ -1,8 +1,14 @@
 #!/usr/bin/env - Rscript nameofthefile.R
-library("DataCombine")
+#library("DataCombine")
 #library("dplyr")
 #library("ggplot2")
-library("stargazer")
+#library("stargazer")
+
+# Please cite stargazer as
+# Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+# R package version 5.2. http://CRAN.R-project.org/package=stargazer 
+
+
 
 # One month in epoch milliseconds = 2629743000
 # Three months = 7889229000
@@ -78,14 +84,14 @@ three_month_rm_gold <- lm(gold_earned ~ three_month_sumgames + three_month_rm_pr
 three_month_rm_kda <- lm(kda ~ three_month_sumgames + three_month_rm_present_games + three_exp_sqared + three_rm_squared + duo_queue + team_ranked + jungle + mid + bot_carry + bot_support + is_rm_1 + is_rm_2 + is_rm_3 + is_rm_4 + is_rm_5 + is_rm_6 + is_rm_7 + is_rm_8 + tm_pct_two_third + tm_pct_three_third + is_preseason, data=rmfinal)
 
 
-summary(one_month_fam_gold)
-summary(one_month_fam_kda)
-summary(three_month_fam_gold)
-summary(three_month_fam_kda)
-summary(one_month_rm_gold)
-summary(one_month_rm_kda)
-summary(three_month_rm_gold)
-summary(three_month_rm_kda)
+#summary(one_month_fam_gold)
+#summary(one_month_fam_kda)
+#summary(three_month_fam_gold)
+#summary(three_month_fam_kda)
+#summary(one_month_rm_gold)
+#summary(one_month_rm_kda)
+#summary(three_month_rm_gold)
+#summary(three_month_rm_kda)
 
 
 
@@ -134,7 +140,14 @@ summary(three_month_rm_kda)
 #stargazer(all_lags_gold, title="All Lags - Gold Earned", type = "text", out="gold_earned_all_lags.txt")
 #stargazer(all_lags_kda, title="All Lags - KDA", type = "text", out="kda_all_lags.txt")
 
-
+#stargazer(one_month_fam_gold, title="Gold Earned - One Month, Familiarity 1", type="text", out="gold_om_fam")
+#stargazer(one_month_fam_kda, title="KDA - One Month, Familiarity 1", type="text", out="kda_om_fam")
+#stargazer(three_month_fam_gold, title="Gold Earned - Three Month, Familiarity 1", type="text", out="gold_tm_fam")
+#stargazer(three_month_fam_kda, title="KDA - One Month Familiarity 1", type="text", out="kda_tm_fam")
+#stargazer(one_month_rm_gold, title="Gold Earned - One Month Familiarity 2", type="text", out="gold_om_rm")
+#stargazer(one_month_rm_kda, title="KDA - One Month Familiarity 2", type="text", out="kda_om_rm")
+#stargazer(three_month_rm_gold, title="Gold Earned - Three Month Familiarity 2", type="text", out="gold_tm_rm")
+#stargazer(three_month_rm_kda, title="Gold Earned - One Month Familiarity 2", type="text", out="kda_tm_rm")
 
 
 
