@@ -1,5 +1,5 @@
 # thesis
-This is my thesis github repo.
+This is the github repository for my Undergraduate Thesis in Economics for Claremont McKenna College.
 
 Inside you will find the final tables I utilized for my thesis project as well as the finished thesis itself. Any identifying traits of players have been redacted from the documents here.
 
